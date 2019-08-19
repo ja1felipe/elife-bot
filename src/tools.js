@@ -2,6 +2,7 @@ const axios = require('axios')
 const token = process.env.Password
 const jsonMsgs = require('./json.messages')
 const message = jsonMsgs
+const URL_GET = process.env.URL_GET
 
 const sendMessage = (id) => {
     let msg = message.msgMenu
@@ -40,7 +41,7 @@ const sendNews = async (id, theme) => {
 }
 
 const getNews = async (theme) => {
-    let arr = await axios.get(`http://localhost:3000/controller/list/${theme}`)
+    let arr = await axios.get(URL_GET+token)
     arr = arr.data.slice(0, 10).map(noticia => {
         return {
             title: noticia.title,
